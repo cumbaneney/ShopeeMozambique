@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Braz-Moz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ff6600;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .aviso-envio {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 15px;
+      margin: 20px;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+    }
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .produto {
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .produto img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .produto h3 {
+      margin: 10px 0 5px 0;
+    }
+    .produto p {
+      margin: 5px 0;
+    }
+    .botao {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 15px;
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .carrinho {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .formulario {
+      background: #fff;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .formulario input, .formulario textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .formulario button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shopee Moçambique</h1>
+    <p>Produtos importados da Shopee com entrega em Moçambique</p>
+  </header>
+
+  <div class="aviso-envio">
+    <strong>📦 Próximo envio:</strong> 14 de Julho<br>
+    <strong>🛒 Último dia para comprar:</strong> 9 de Julho
+  </div>
+
+  <div class="carrinho" id="carrinho">
+    <strong>Carrinho:</strong>
+    <ul id="itens-carrinho"></ul>
+    <p><strong>Total: <span id="total">0</span> MT</strong></p>
+  </div>
+
+  <main class="produtos">
+    <div class="produto">
+      <img src="https://shopee.com.br/Vestido-Feminina-Longo-Floral-Alcinha-ajust%C3%A1vel-Com-bojo-Ver%C3%A3o-V0577-i.494450555.23892172782?sp_atk=b2c92aff-3956-4755-aadc-d780faf4fbe5&xptdk=b2c92aff-3956-4755-aadc-d780faf4fbe5" alt="Vestido feminino">
+      <h3>Vestido Feminina Longo Floral Alcinha ajustável Com bojo Verão /V0577</h3>
+      <p>Preço: <span class="preco">2.100,00</span> MZN</p>
+      <button class="botao" onclick="adicionarAoCarrinho('Vestido Feminina Longo Floral Alcinha ajustável Com bojo Verão /V0577', 2.100,00)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="https://shopee.com.br/Kit-Com-12-Utens%C3%ADlios-De-Cozinha-Em-Silicone-Com-Cabo-Madeira-Yikasa-i.1409811653.20299574825?sp_atk=4ef2a809-7976-4ead-b04a-1ca5b0c6b143&xptdk=4ef2a809-7976-4ead-b04a-1ca5b0c6b143" alt="Kit Com 12 Utensílios De Cozinha Em Silicone Com Cabo Madeira Yikasa">
+      <h3>Kit Com 12 Utensílios De Cozinha Em Silicone Com Cabo Madeira Yikasa</h3>
+      <p>Preço: <span class="preco">3.500,00</span> MZN</p>
+      <button class="botao" onclick="adicionarAoCarrinho('Kit de Silicone', 3.500,00)">Comprar</button>
+    </div>
+    <div class="produto">
+      <img src="https://cf.shopee.com.br/file/9f75dbd51e4ae7a8c8ab6f9d26a30b68" alt="Calça masculina">
+      <h3>Calça Masculina Slim</h3>
+      <p>Preço: <span class="preco">1700</span> MT</p>
+      <button class="botao" onclick="adicionarAoCarrinho('Calça Slim', 1700)">Comprar</button>
+    </div>
+  </main>
+
+  <section class="formulario">
+    <h2>Finalizar Compra</h2>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdbR7dExemploFakeFormID/formResponse" method="POST" target="_blank">
+      <label>Nome:</label>
+      <input type="text" name="entry.1111111111" required>
+      <label>Contacto (WhatsApp ou Telefone):</label>
+      <input type="text" name="entry.2222222222" required>
+      <label>Endereço para entrega:</label>
+      <textarea name="entry.3333333333" rows="3" required></textarea>
+      <p><strong>Pagamento:</strong> Por favor, envie o valor total via <strong>M-Pesa</strong> para o número <strong>84 123 4567</strong> e anexe o comprovativo abaixo.</p>
+      <label>Link ou código do comprovativo:</label>
+      <input type="text" name="entry.4444444444" required>
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </section>
+
+  <script>
+    const itensCarrinho = document.getElementById('itens-carrinho');
+    const totalSpan = document.getElementById('total');
+    let total = 0;
+
+    function adicionarAoCarrinho(nome, preco) {
+      const item = document.createElement('li');
+      item.textContent = `${nome} - ${preco} MT`;
+      itensCarrinho.appendChild(item);
+      total += preco;
+      totalSpan.textContent = total;
+    }
+  </script>
+</body>
+</html>
